@@ -1,0 +1,42 @@
+<h1>Tasks</h1>
+
+<table>
+    <thead>
+        <th>Task</th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </thead>
+    <tbody>
+        {{#each tasks}}
+        <tr>
+            {{#if completed}}
+                <td style="text-decoration: line-through;">{{title}}</td>
+            {{else}}
+                <td>{{title}}</td>
+            {{/if}}
+            <td>
+                <a href="/tasks/{{id}}">
+                    {{#if completed}}
+                        Uncomplete
+                    {{else}}
+                        Complete
+                    {{/if}}
+                </a>
+            </td>
+            <td><a href="/edit/{{id}}">Edit</a></td>
+            <td>
+                <form action="/delete" method="post">
+                    <input type="hidden" name="id" value="{{id}}">
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<div class="add">{{{add}}}</div>
+<div class="edit">{{edit}}</div>
+<div class="delete">{{delete}}</div>
+
+<h3><a href="/add">Add task</a></h3>
